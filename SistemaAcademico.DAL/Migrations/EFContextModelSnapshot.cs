@@ -15,7 +15,7 @@ namespace SistemaAcademico.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
+                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -29,13 +29,15 @@ namespace SistemaAcademico.DAL.Migrations
 
                     b.Property<DateTime>("Data_Nascimento");
 
-                    b.Property<int>("Id_Cidade");
+                    b.Property<int?>("FK_Aluno_Cidade");
 
                     b.Property<string>("Nome");
 
                     b.Property<string>("Sobrenome");
 
                     b.HasKey("Codigo");
+
+                    b.HasIndex("FK_Aluno_Cidade");
 
                     b.ToTable("Aluno");
                 });
@@ -93,9 +95,9 @@ namespace SistemaAcademico.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Id_Disciplina");
+                    b.Property<int>("FK_Nota_Disciplina");
 
-                    b.Property<int>("Id_Registro_Academico");
+                    b.Property<int?>("FK_Nota_RA");
 
                     b.Property<decimal>("Media");
 
@@ -107,6 +109,10 @@ namespace SistemaAcademico.DAL.Migrations
 
                     b.HasKey("Codigo");
 
+                    b.HasIndex("FK_Nota_Disciplina");
+
+                    b.HasIndex("FK_Nota_RA");
+
                     b.ToTable("Nota");
                 });
 
@@ -116,15 +122,19 @@ namespace SistemaAcademico.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Id_Aluno");
+                    b.Property<int>("FK_RA_Aluno");
 
-                    b.Property<int>("Id_Curso");
+                    b.Property<int?>("FK_RA_Curso");
 
                     b.Property<int>("Numero_Matricula");
 
                     b.Property<string>("Semestre");
 
                     b.HasKey("Codigo");
+
+                    b.HasIndex("FK_RA_Aluno");
+
+                    b.HasIndex("FK_RA_Curso");
 
                     b.ToTable("RegistroAcademico");
                 });
@@ -135,13 +145,60 @@ namespace SistemaAcademico.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Id_Disciplina");
+                    b.Property<int>("FK_RD_Disciplina");
 
-                    b.Property<int>("Id_Registro_Academico");
+                    b.Property<int?>("FK_RD_RA");
 
                     b.HasKey("Codigo");
 
+                    b.HasIndex("FK_RD_Disciplina");
+
+                    b.HasIndex("FK_RD_RA");
+
                     b.ToTable("RegistroDisciplina");
+                });
+
+            modelBuilder.Entity("SistemaAcademico.DAL.Entidades.AlunoDAO", b =>
+                {
+                    b.HasOne("SistemaAcademico.DAL.Entidades.CidadeDAO", "Cidade")
+                        .WithMany()
+                        .HasForeignKey("FK_Aluno_Cidade");
+                });
+
+            modelBuilder.Entity("SistemaAcademico.DAL.Entidades.NotaDAO", b =>
+                {
+                    b.HasOne("SistemaAcademico.DAL.Entidades.DisciplinaDAO", "Disciplina")
+                        .WithMany()
+                        .HasForeignKey("FK_Nota_Disciplina")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SistemaAcademico.DAL.Entidades.RegistroAcademicoDAO", "Registro_Academico")
+                        .WithMany()
+                        .HasForeignKey("FK_Nota_RA");
+                });
+
+            modelBuilder.Entity("SistemaAcademico.DAL.Entidades.RegistroAcademicoDAO", b =>
+                {
+                    b.HasOne("SistemaAcademico.DAL.Entidades.AlunoDAO", "Aluno")
+                        .WithMany()
+                        .HasForeignKey("FK_RA_Aluno")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SistemaAcademico.DAL.Entidades.CursoDAO", "Curso")
+                        .WithMany()
+                        .HasForeignKey("FK_RA_Curso");
+                });
+
+            modelBuilder.Entity("SistemaAcademico.DAL.Entidades.RegistroDisciplinaDAO", b =>
+                {
+                    b.HasOne("SistemaAcademico.DAL.Entidades.DisciplinaDAO", "Disciplina")
+                        .WithMany()
+                        .HasForeignKey("FK_RD_Disciplina")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SistemaAcademico.DAL.Entidades.RegistroAcademicoDAO", "Registro_Academico")
+                        .WithMany()
+                        .HasForeignKey("FK_RD_RA");
                 });
 #pragma warning restore 612, 618
         }

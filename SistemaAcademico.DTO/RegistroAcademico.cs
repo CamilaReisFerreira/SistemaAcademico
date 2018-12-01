@@ -14,10 +14,6 @@ namespace SistemaAcademico.DTO
 
         public string Semestre { get; set; }
 
-        public int Id_Aluno { get; set; }
-
-        public int Id_Curso { get; set; }
-
         public Aluno Aluno { get; set; }
 
         public Curso Curso { get; set; }

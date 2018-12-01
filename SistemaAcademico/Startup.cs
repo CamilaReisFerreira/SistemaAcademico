@@ -43,8 +43,8 @@ namespace SistemaAcademico
              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ICidadeDAL, CidadeDAL>();
             services.AddScoped<ICursoDAL, CursoDAL>();
-            //services.AddScoped<IColaboradorTarefaDAL, ColaboradorTarefaDAL>();
-            //services.AddScoped<IHorasColaboradorDAL, HorasColaboradorDAL>();
+            services.AddScoped<IAlunoDAL, AlunoDAL>();
+            services.AddScoped<IDisciplinaDAL, DisciplinaDAL>();
             //services.AddScoped<IProjetoDAL, ProjetoDAL>();
             //services.AddScoped<ITarefaDAL, TarefaDAL>();
         }
@@ -70,7 +70,7 @@ namespace SistemaAcademico
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Aluno}/{action=Index}/{id?}");
             });
         }
     }

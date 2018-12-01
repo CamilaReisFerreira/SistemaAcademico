@@ -18,9 +18,15 @@ namespace SistemaAcademico.DAL.Entidades
 
         public string Semestre { get; set; }
 
-        public int Id_Aluno { get; set; }
+        public int? FK_RA_Aluno { get; set; }
 
-        public int Id_Curso { get; set; }
+        public int? FK_RA_Curso { get; set; }
+
+        [ForeignKey("FK_RA_Aluno")]
+        public AlunoDAO Aluno { get; set; }
+
+        [ForeignKey("FK_RA_Curso")]
+        public CursoDAO Curso { get; set; }
 
     }
 }

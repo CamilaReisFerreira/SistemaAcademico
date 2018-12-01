@@ -10,10 +10,6 @@ namespace SistemaAcademico.DTO
     {
         public int Codigo { get; set; }
 
-        public int Id_Registro_Academico { get; set; }
-
-        public int Id_Disciplina { get; set; }
-
         public decimal Nota1 { get; set; }
 
         public decimal Nota2 { get; set; }

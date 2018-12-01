@@ -14,10 +14,6 @@ namespace SistemaAcademico.DAL.Entidades
         [Key]
         public int Codigo { get; set; }
 
-        public int Id_Registro_Academico { get; set; }
-
-        public int Id_Disciplina { get; set; }
-
         public decimal Nota1 { get; set; }
 
         public decimal Nota2 { get; set; }
@@ -25,5 +21,15 @@ namespace SistemaAcademico.DAL.Entidades
         public decimal Nota3 { get; set; }
 
         public decimal Media { get; set; }
+
+        public int? FK_Nota_RA { get; set; }
+
+        public int? FK_Nota_Disciplina { get; set; }
+
+        [ForeignKey("FK_Nota_RA")]
+        public RegistroAcademicoDAO Registro_Academico { get; set; }
+
+        [ForeignKey("FK_Nota_Disciplina")]
+        public DisciplinaDAO Disciplina { get; set; }
     }
 }

@@ -18,10 +18,12 @@ namespace SistemaAcademico.DAL.Entidades
 
         public string Sobrenome { get; set; }
 
-        public int Id_Cidade { get; set; }
-
         public string CPF { get; set; }
 
         public DateTime Data_Nascimento { get; set; }
+        public int? FK_Aluno_Cidade { get; set; }
+
+        [ForeignKey("FK_Aluno_Cidade")]
+        public CidadeDAO Cidade { get; set; }
     }
 }

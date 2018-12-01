@@ -10,10 +10,6 @@ namespace SistemaAcademico.DTO
     {
         public int Codigo { get; set; }
 
-        public int Id_Registro_Academico { get; set; }
-
-        public int Id_Disciplina { get; set; }
-
         public RegistroAcademico Registro_Academico { get; set; }
 
         public Disciplina Disciplina { get; set; }

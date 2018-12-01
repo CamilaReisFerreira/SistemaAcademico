@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SistemaAcademico.DTO.Curso>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data_Inicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carga_Horaria)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data_Inicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carga_Horaria)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Codigo }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Codigo }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Codigo })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

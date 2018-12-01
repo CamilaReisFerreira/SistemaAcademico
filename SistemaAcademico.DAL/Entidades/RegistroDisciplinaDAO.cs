@@ -14,8 +14,14 @@ namespace SistemaAcademico.DAL.Entidades
         [Key]
         public int Codigo { get; set; }
 
-        public int Id_Registro_Academico { get; set; }
+        public int? FK_RD_RA { get; set; }
 
-        public int Id_Disciplina { get; set; }
+        public int? FK_RD_Disciplina { get; set; }
+
+        [ForeignKey("FK_RD_RA")]
+        public RegistroAcademicoDAO Registro_Academico { get; set; }
+
+        [ForeignKey("FK_RD_Disciplina")]
+        public DisciplinaDAO Disciplina { get; set; }
     }
 }

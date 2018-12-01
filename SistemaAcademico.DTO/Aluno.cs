@@ -14,8 +14,6 @@ namespace SistemaAcademico.DTO
 
         public string Sobrenome { get; set; }
 
-        public int Id_Cidade { get; set; }
-
         public string CPF { get; set; }
 
         public DateTime Data_Nascimento { get; set; }

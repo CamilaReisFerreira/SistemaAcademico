@@ -1,6 +1,6 @@
 using System;
 
-namespace SistemaAcademico.Models
+namespace GestaoProjetos.Models
 {
     public class ErrorViewModel
     {
