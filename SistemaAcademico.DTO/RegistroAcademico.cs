@@ -17,5 +17,9 @@ namespace SistemaAcademico.DTO
         public Aluno Aluno { get; set; }
 
         public Curso Curso { get; set; }
+
+        public IEnumerable<RegistroDisciplina> RegistroDisciplinas { get; set; }
+
+        public IEnumerable<Nota> Notas { get; set; }
     }
 }

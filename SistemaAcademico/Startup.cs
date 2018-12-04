@@ -45,7 +45,7 @@ namespace SistemaAcademico
             services.AddScoped<ICursoDAL, CursoDAL>();
             services.AddScoped<IAlunoDAL, AlunoDAL>();
             services.AddScoped<IDisciplinaDAL, DisciplinaDAL>();
-            //services.AddScoped<IProjetoDAL, ProjetoDAL>();
+            services.AddScoped<IRegistroAcademicoDAL, RegistroAcademicoDAL>();
             //services.AddScoped<ITarefaDAL, TarefaDAL>();
         }
 

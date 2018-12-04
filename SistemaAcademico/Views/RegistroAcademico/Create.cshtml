@@ -1,0 +1,94 @@
+﻿@model SistemaAcademico.DTO.RegistroAcademico
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>RegistroAcademico</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Codigo" class="control-label"></label>
+                <input asp-for="Codigo" class="form-control" readonly />
+                <span asp-validation-for="Codigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Numero_Matricula" class="control-label"></label>
+                <input asp-for="Numero_Matricula" class="form-control" />
+                <span asp-validation-for="Numero_Matricula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Semestre" class="control-label"></label>
+                <input asp-for="Semestre" class="form-control" />
+                <span asp-validation-for="Semestre" class="text-danger"></span>
+            </div>
+            <ul class="nav nav-tabs li-border-top" id="tabsPaginaCompoenente_Dados">
+                <li class="active"><a href="#tab_registro" data-toggle="tab">Registro</a></li>
+                <li><a href="#tab_notas" data-toggle="tab">Notas</a></li>
+
+            </ul>
+
+            <div class="wrapper">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_registro">
+                        <div class="form-group">
+                            <label class="control-label"></label>
+                            <select class="form-control"
+                                    asp-items="@(new SelectList(ViewBag.Disciplinas,"Codigo","Nome"))"></select>
+                            <btn value="Cadastrar" onclick="AddDisciplina(this)"  class="btn btn-default">Cadastrar</btn>
+                        </div>
+                        <div class="form-group">
+                            <table class="table-bordered">
+                                <tr>
+                                    <th>
+                                        Código
+                                    </th>
+                                    <th>
+                                        Nome
+                                    </th>
+                                    <th>
+                                        Valor
+                                    </th>
+                                </tr>
+                                <tr>
+                                    @foreach (var item in ViewBag.Disciplinas)
+                                    {
+                                        <td>@item.Codigo</td>
+                                        <td>@item.Nome</td>
+                                        <td>@item.Valor</td>
+                                    }
+                                </tr>
+                            </table>
+                            </div>
+
+                        </div>
+                    </div>
+            </div>
+
+            <div class="wrapper">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_notas">
+                        
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>*@
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
